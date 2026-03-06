@@ -1,18 +1,33 @@
 "use client";
 
+import { motion, useScroll, useTransform } from "framer-motion";
+import Image from "next/image";
+
 export default function Navbar() {
+    const { scrollY } = useScroll();
+    const backgroundColor = useTransform(
+        scrollY,
+        [0, 50],
+        ["rgba(10,10,10,0)", "rgba(10,10,10,0.85)"]
+    );
+    const borderBottom = useTransform(
+        scrollY,
+        [0, 50],
+        ["1px solid rgba(255,255,255,0)", "1px solid var(--border)"]
+    );
+
     return (
-        <nav
+        <motion.nav
             style={{
                 position: "fixed",
                 top: 0,
                 left: 0,
                 right: 0,
                 zIndex: 100,
-                background: "rgba(10,10,10,0.85)",
+                backgroundColor,
+                borderBottom,
                 backdropFilter: "blur(12px)",
-                borderBottom: "1px solid var(--border)",
-                padding: "0 clamp(16px, 4vw, 24px)",
+                padding: "0 clamp(20px, 5vw, 32px)",
             }}
         >
             <div
@@ -22,28 +37,35 @@ export default function Navbar() {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "space-between",
-                    height: 56,
+                    height: 64,
                 }}
             >
-                <span
-                    style={{
-                        fontWeight: 800,
-                        fontSize: "clamp(1rem, 2.5vw, 1.1rem)",
-                        background: "linear-gradient(135deg, #A855F7, #C084FC)",
-                        WebkitBackgroundClip: "text",
-                        WebkitTextFillColor: "transparent",
-                    }}
-                >
-                    ポッドクリップ
-                </span>
-                <a
+                <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                    <Image src="/logo.png" alt="ポッドクリップ" width={32} height={32} style={{ objectFit: "contain", flexShrink: 0 }} />
+                    <span
+                        style={{
+                            fontWeight: 800,
+                            fontSize: "clamp(1rem, 2.5vw, 1.15rem)",
+                            background: "linear-gradient(135deg, #A855F7, #C084FC)",
+                            WebkitBackgroundClip: "text",
+                            WebkitTextFillColor: "transparent",
+                            letterSpacing: "-0.02em",
+                            whiteSpace: "nowrap",
+                        }}
+                    >
+                        ポッドクリップ
+                    </span>
+                </div>
+                <motion.a
                     href="#contact"
-                    className="btn-primary"
-                    style={{ padding: "9px clamp(14px, 3vw, 22px)", fontSize: "clamp(0.78rem, 1.5vw, 0.875rem)" }}
+                    className="btn-primary navbar-cta"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    style={{ padding: "10px clamp(16px, 3vw, 24px)", fontSize: "clamp(0.8rem, 1.5vw, 0.9rem)" }}
                 >
                     無料動画をリクエスト
-                </a>
+                </motion.a>
             </div>
-        </nav>
+        </motion.nav>
     );
 }

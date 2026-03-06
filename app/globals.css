@@ -311,4 +311,8 @@ body {
     width: 100%;
     text-align: center;
   }
+
+  .navbar-cta {
+    display: none;
+  }
 }

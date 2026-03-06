@@ -25,32 +25,36 @@ const faqs = [
 export default function FAQ() {
     const [open, setOpen] = useState<number | null>(null);
     const ref = useRef(null);
-    const inView = useInView(ref, { once: true, margin: "-80px" });
+    const inView = useInView(ref, { once: true, margin: "-100px" });
 
     return (
         <section className="section-light">
             <div className="section" ref={ref}>
                 <motion.div
-                    initial={{ opacity: 0, y: 24 }}
+                    initial={{ opacity: 0, y: 30 }}
                     animate={inView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.6 }}
-                    style={{ textAlign: "center", marginBottom: 56 }}
+                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                    style={{ textAlign: "center", marginBottom: 72 }}
                 >
                     <p className="section-label">FAQ</p>
-                    <h2 className="text-dark" style={{ fontSize: "clamp(1.5rem, 3vw, 2.25rem)", fontWeight: 800 }}>
+                    <h2 className="text-dark" style={{ fontSize: "clamp(1.6rem, 4vw, 2.5rem)", fontWeight: 800, letterSpacing: "-0.01em" }}>
                         よくあるご質問
                     </h2>
                 </motion.div>
 
-                <div style={{ maxWidth: 720, margin: "0 auto", display: "flex", flexDirection: "column", gap: 12 }}>
+                <div style={{ maxWidth: 760, margin: "0 auto", display: "flex", flexDirection: "column", gap: 16 }}>
                     {faqs.map((faq, i) => (
                         <motion.div
                             key={i}
-                            initial={{ opacity: 0, y: 16 }}
+                            initial={{ opacity: 0, y: 20 }}
                             animate={inView ? { opacity: 1, y: 0 } : {}}
-                            transition={{ duration: 0.5, delay: 0.1 * i }}
+                            transition={{ duration: 0.6, delay: 0.1 * i, ease: [0.16, 1, 0.3, 1] }}
                             className="card-light"
-                            style={{ overflow: "hidden" }}
+                            style={{
+                                overflow: "hidden",
+                                border: open === i ? "1px solid var(--primary)" : "1px solid #E8E0FF",
+                                transition: "border-color 0.3s"
+                            }}
                         >
                             <button
                                 onClick={() => setOpen(open === i ? null : i)}
@@ -58,7 +62,7 @@ export default function FAQ() {
                                     width: "100%",
                                     background: "none",
                                     border: "none",
-                                    padding: "20px 24px",
+                                    padding: "24px 28px",
                                     cursor: "pointer",
                                     display: "flex",
                                     alignItems: "center",
@@ -67,13 +71,13 @@ export default function FAQ() {
                                     textAlign: "left",
                                 }}
                             >
-                                <span className="faq-question" style={{ fontWeight: 700, fontSize: "0.95rem" }}>
+                                <span className="faq-question" style={{ fontWeight: 700, fontSize: "clamp(0.95rem, 1.8vw, 1.05rem)" }}>
                                     Q. {faq.q}
                                 </span>
                                 <motion.span
-                                    animate={{ rotate: open === i ? 45 : 0 }}
+                                    animate={{ rotate: open === i ? 45 : 0, color: open === i ? "var(--primary)" : "#1A1A2E" }}
                                     transition={{ duration: 0.25 }}
-                                    style={{ fontSize: "1.5rem", color: "var(--primary)", flexShrink: 0, lineHeight: 1 }}
+                                    style={{ fontSize: "1.5rem", flexShrink: 0, lineHeight: 1 }}
                                 >
                                     +
                                 </motion.span>
@@ -84,10 +88,10 @@ export default function FAQ() {
                                         initial={{ height: 0, opacity: 0 }}
                                         animate={{ height: "auto", opacity: 1 }}
                                         exit={{ height: 0, opacity: 0 }}
-                                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                                        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                                         style={{ overflow: "hidden" }}
                                     >
-                                        <p className="faq-answer" style={{ padding: "0 24px 20px", fontSize: "0.9rem", lineHeight: 1.75 }}>
+                                        <p className="faq-answer" style={{ padding: "0 28px 24px", fontSize: "clamp(0.9rem, 1.6vw, 0.95rem)", lineHeight: 1.8, opacity: 0.9 }}>
                                             A. {faq.a}
                                         </p>
                                     </motion.div>
