@@ -1,13 +1,13 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
 import Image from "next/image";
+import { useRef } from "react";
 
 const slides = [
-    { src: "/slide-step01.png", alt: "STEP 01 素材を渡すだけ" },
-    { src: "/slide-step02.png", alt: "STEP 02 素材をSNS用に最適化" },
-    { src: "/slide-step03.png", alt: "STEP 03 完成データをお届け" },
+    { src: "/slide-step01.png", alt: "STEP 01 音源を受け取る" },
+    { src: "/slide-step02.png", alt: "STEP 02 用途別に再設計" },
+    { src: "/slide-step03.png", alt: "STEP 03 各媒体・各用途へ展開" },
 ];
 
 const SLIDE_STYLE = {
@@ -27,8 +27,6 @@ export default function HowItWorks() {
         <section className="slanted-container" style={{ padding: "clamp(100px, 15vw, 160px) 0" }}>
             <div className="slanted-bg-alt" />
             <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 clamp(16px, 4vw, 48px)" }} ref={ref}>
-
-                {/* Concept: flow */}
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -40,8 +38,8 @@ export default function HowItWorks() {
                         1つの音声から複数のコンテンツへ
                     </h2>
                     <p style={{ color: "var(--muted)", fontSize: "clamp(0.9rem, 1.8vw, 1.05rem)", maxWidth: 640, margin: "0 auto" }}>
-                        PodcastのURLや素材を渡すだけで、SNSでそのまま使える形で納品します。
-                        資産としてのPodcastを最大限に活用しましょう。
+                        PodcastのURLや収録データを渡すだけで、SNS配信だけでなく、
+                        営業・採用・広報で使える二次利用素材まで展開します。
                     </p>
                 </motion.div>
 
@@ -54,7 +52,7 @@ export default function HowItWorks() {
                 >
                     <Image
                         src="/slide-flow.png"
-                        alt="全体フロー"
+                        alt="1つの音声から複数のコンテンツへ展開するフロー"
                         width={1920}
                         height={1080}
                         unoptimized
@@ -62,7 +60,6 @@ export default function HowItWorks() {
                     />
                 </motion.div>
 
-                {/* 3 Steps */}
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -72,7 +69,7 @@ export default function HowItWorks() {
                 >
                     <p className="section-label">How it works</p>
                     <h2 style={{ fontSize: "clamp(1.6rem, 4vw, 2.5rem)", fontWeight: 800 }}>
-                        3ステップで完結
+                        3ステップで展開
                     </h2>
                 </motion.div>
 

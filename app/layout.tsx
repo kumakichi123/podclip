@@ -1,16 +1,13 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-
 export const metadata: Metadata = {
-  title: "ポッドクリップ | PodcastからSNS用の動画や記事を作成",
+  title: "ポッドクリップ | Podcastを見られる短尺コンテンツへ再設計",
   description:
-    "话すだけでOK。PodcastをSNS用ショート動画・note記事・X投稿に変換するコンテンツ制作サービス。まずは無料の切り抜き動画をリクエスト。",
+    "出して終わりのPodcastを、採用候補者や見込み客に届く短尺コンテンツへ再設計。SNS展開だけでなく、営業・採用・広報で使える二次利用素材まで設計します。",
   openGraph: {
     title: "ポッドクリップ",
-    description: "PodcastからSNS用の動画や記事を作成するサービス",
+    description: "Podcastを採用・営業・広報で使える短尺コンテンツへ再設計するサービス",
     type: "website",
   },
 };
@@ -22,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <body className={inter.variable}>{children}</body>
+      <body>{children}</body>
     </html>
   );
 }

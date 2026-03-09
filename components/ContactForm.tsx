@@ -64,7 +64,7 @@ export default function ContactForm() {
                         <span className="gradient-text">無料で1本ショート動画</span>をお作りします。
                     </h2>
                     <p style={{ color: "var(--muted)", fontSize: "clamp(0.9rem, 1.8vw, 1rem)" }}>
-                        リスクゼロで実力をご確認ください。通常12時間以内に返信いたします。
+                        リスクゼロで実力をご確認ください。SNS投稿だけでなく、営業・採用・広報での二次利用まで見据えてご提案します。通常12時間以内に返信いたします。
                     </p>
                 </motion.div>
 

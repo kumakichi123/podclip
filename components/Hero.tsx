@@ -1,20 +1,12 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useEffect, useState } from "react";
 
 export default function Hero() {
-    const [mounted, setMounted] = useState(false);
-    const [bars, setBars] = useState<{ height: number; delay: number }[]>([]);
-
-    useEffect(() => {
-        setMounted(true);
-        const newBars = Array.from({ length: 40 }, (_, i) => ({
-            height: Math.random() * 80 + 20,
-            delay: (i * 0.06) % 1.4,
-        }));
-        setBars(newBars);
-    }, []);
+    const bars = Array.from({ length: 40 }, (_, i) => ({
+        height: 20 + ((i * 37) % 81),
+        delay: (i * 0.06) % 1.4,
+    }));
 
     const { scrollY } = useScroll();
     const glowY = useTransform(scrollY, [0, 500], [0, 100]);
@@ -52,7 +44,7 @@ export default function Hero() {
                     pointerEvents: "none",
                 }}
             >
-                {mounted && bars.map((b, i) => (
+                {bars.map((b, i) => (
                     <motion.span
                         key={i}
                         className="waveform-bar"
@@ -103,14 +95,27 @@ export default function Hero() {
                             fontSize: "clamp(2rem, 7vw, 4.25rem)",
                             fontWeight: 900,
                             lineHeight: 1.15,
-                            marginBottom: 40,
+                            marginBottom: 24,
                             letterSpacing: "-0.03em",
                         }}
                     >
-                        PodcastからSNS用の
+                        音声しかないPodcastを
                         <br />
-                        <span className="gradient-text">動画や記事を作成</span>
+                        <span className="gradient-text">見られる短尺コンテンツへ再設計</span>
                     </h1>
+
+                    <p
+                        style={{
+                            maxWidth: 720,
+                            margin: "0 auto 32px",
+                            color: "var(--muted)",
+                            fontSize: "clamp(0.95rem, 1.9vw, 1.08rem)",
+                            lineHeight: 1.8,
+                        }}
+                    >
+                        出して終わりになっているPodcastを、採用候補者や見込み客に届く形へ再利用。
+                        Shortsや記事などのSNS展開はもちろん、営業・採用・広報で使える二次利用素材として再設計します。
+                    </p>
 
                     <motion.div
                         whileHover={{ scale: 1.03 }}
